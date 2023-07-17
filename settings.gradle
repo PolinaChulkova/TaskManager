@@ -1,0 +1,6 @@
+rootProject.name = 'taskManager'
+
+includeBuild 'emailSenderMicro'
+includeBuild 'userMicro'
+includeBuild 'taskMicro'
+includeBuild 'entity'
