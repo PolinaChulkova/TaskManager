@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/emailSenderMicro" name="emailSenderMicro">
+                <projects>
+                  <project path="$PROJECT_DIR$/emailSenderMicro" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/userMicro" name="userMicro">
+                <projects>
+                  <project path="$PROJECT_DIR$/userMicro" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/taskMicro" name="taskMicro">
+                <projects>
+                  <project path="$PROJECT_DIR$/taskMicro" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/entity" name="entity">
+                <projects>
+                  <project path="$PROJECT_DIR$/entity" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/emailSenderMicro" />
+            <option value="$PROJECT_DIR$/entity" />
+            <option value="$PROJECT_DIR$/taskMicro" />
+            <option value="$PROJECT_DIR$/userMicro" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/emailSenderMicro" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/emailSenderMicro" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/entity" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/entity" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/taskMicro" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/taskMicro" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/userMicro" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/userMicro" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
