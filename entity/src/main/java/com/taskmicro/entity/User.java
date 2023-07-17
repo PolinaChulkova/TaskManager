@@ -1,0 +1,27 @@
+package com.taskmicro.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "usr")
+@Data
+public class User {
+    @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
+    @Column(name = "username", unique = true)
+    private String username;
+    @Column(name = "password")
+    private char[] password;
+
+    @ElementCollection
+    @CollectionTable(name = "user_tasks", joinColumns = @JoinColumn(name = "user_id"))
+    private List<Long> taskIds = new ArrayList<>();
+}
