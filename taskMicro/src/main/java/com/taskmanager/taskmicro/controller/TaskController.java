@@ -1,8 +1,13 @@
 package com.taskmanager.taskmicro.controller;
 
+import com.taskmanager.taskmicro.dto.CreateTaskDto;
+import com.taskmanager.taskmicro.mapper.TaskMapper;
+import com.taskmanager.taskmicro.service.TaskService;
+import com.taskmicro.entity.Task;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.config.Task;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +20,16 @@ public class TaskController {
 
     private final TaskService taskService;
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable("userId") Long userId) {
-        return new ResponseEntity<>(taskService.getTasksByUserId(userId));
+    @GetMapping("/{userId}/{page}")
+    public ResponseEntity<List<Task>> getTasksByUserId(@PathVariable("userId") Long userId,
+                                                       @PathVariable("page") int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        return ResponseEntity.ok(taskService.getTasksByUserId(userId, pageable).getContent());
+    }
+
+    @GetMapping("/{taskId}")
+    public ResponseEntity<Task> getTaskByTaskId(@PathVariable("taskId") Long taskId) {
+        return ResponseEntity.ok(taskService.getTaskByTaskId(taskId));
     }
 
     @DeleteMapping("/{taskId}")
@@ -27,12 +39,12 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(@RequestBody CreateTaskDto dto) {
-        return new ResponseEntity<>(taskService.createTask(dto));
+        return ResponseEntity.ok(taskService.createTask(TaskMapper.toEntity(dto)));
     }
 
     @PatchMapping("/{taskId}")
     public ResponseEntity<Task> updateTaskByFields(@PathVariable("taskId") Long taskId,
-                                                   Map<String, Object> fields) {
-        return new ResponseEntity<>(taskService.updateTaskByFields(taskId, fields));
+                                                   @RequestBody Map<String, Object> fields) {
+        return ResponseEntity.ok(taskService.updateTaskByFields(taskId, fields));
     }
 }
