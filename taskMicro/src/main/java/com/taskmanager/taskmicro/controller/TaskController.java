@@ -44,7 +44,7 @@ public class TaskController {
 
     @PatchMapping("/{taskId}")
     public ResponseEntity<Task> updateTaskByFields(@PathVariable("taskId") Long taskId,
-                                                   Map<String, Object> fields) {
+                                                   @RequestBody Map<String, Object> fields) {
         return ResponseEntity.ok(taskService.updateTaskByFields(taskId, fields));
     }
 }
