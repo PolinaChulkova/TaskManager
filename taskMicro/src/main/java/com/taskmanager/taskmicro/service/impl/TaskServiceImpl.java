@@ -45,11 +45,15 @@ public class TaskServiceImpl implements TaskService {
     public Task updateTaskByFields(Long taskId, Map<String, Object> fields) {
         Task task = getTaskByTaskId(taskId);
 
+        fields.remove("taskId");
+        fields.remove("userId");
+
         fields.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(Task.class, "key");
-            Objects.requireNonNull(field).setAccessible(true);
+            Field field = ReflectionUtils.findField(Task.class, key);
+            field.setAccessible(true);
             ReflectionUtils.setField(field, task, value);
             });
+
             return taskRepository.save(task);
         }
 }
