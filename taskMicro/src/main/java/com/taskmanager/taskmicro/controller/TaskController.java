@@ -3,7 +3,7 @@ package com.taskmanager.taskmicro.controller;
 import com.taskmanager.taskmicro.dto.CreateTaskDto;
 import com.taskmanager.taskmicro.mapper.TaskMapper;
 import com.taskmanager.taskmicro.service.TaskService;
-import com.taskmicro.entity.Task;
+import com.taskmanager.taskmicro.entity.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -44,7 +44,7 @@ public class TaskController {
 
     @PatchMapping("/{taskId}")
     public ResponseEntity<Task> updateTaskByFields(@PathVariable("taskId") Long taskId,
-                                                   @RequestBody Map<String, Object> fields) {
+                                                   Map<String, Object> fields) {
         return ResponseEntity.ok(taskService.updateTaskByFields(taskId, fields));
     }
 }

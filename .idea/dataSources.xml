@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/user-micro</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="task-micro@localhost" uuid="cd186116-3b52-46a8-a634-1d6fe4d3b89d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/task-micro</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
