@@ -1,7 +1,7 @@
 package com.taskmanager.taskmicro.mapper;
 
 import com.taskmanager.taskmicro.dto.CreateTaskDto;
-import com.taskmicro.entity.Task;
+import com.taskmanager.taskmicro.entity.Task;
 
 public class TaskMapper {
 

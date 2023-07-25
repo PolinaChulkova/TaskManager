@@ -1,11 +1,8 @@
 package com.taskmanager.taskmicro.service;
 
-import com.taskmanager.taskmicro.dto.CreateTaskDto;
-import com.taskmanager.taskmicro.mapper.TaskMapper;
+import com.taskmanager.taskmicro.entity.Task;
 import com.taskmanager.taskmicro.repository.TaskRepository;
 import com.taskmanager.taskmicro.service.impl.TaskServiceImpl;
-import com.taskmicro.entity.Task;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -14,9 +11,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.*;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Optional;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.BDDMockito.given;
