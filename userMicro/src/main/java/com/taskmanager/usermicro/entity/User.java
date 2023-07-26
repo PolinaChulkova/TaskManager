@@ -2,6 +2,7 @@ package com.taskmanager.usermicro.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "usr")
 @Data
+@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "user_id")
@@ -24,4 +26,10 @@ public class User {
     @ElementCollection
     @CollectionTable(name = "user_tasks", joinColumns = @JoinColumn(name = "user_id"))
     private List<Long> taskIds = new ArrayList<>();
+
+    public User(String email, String name, char[] password) {
+        this.email = email;
+        this.name = name;
+        this.password = password;
+    }
 }
