@@ -42,7 +42,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task updateTaskByFields(Long taskId, Map<String, Object> fields) {
+    public Task updateTaskByTaskIdAndFields(Long taskId, Map<String, Object> fields) {
         Task task = getTaskByTaskId(taskId);
 
         fields.remove("taskId");

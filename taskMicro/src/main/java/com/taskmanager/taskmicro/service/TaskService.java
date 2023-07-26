@@ -15,5 +15,5 @@ public interface TaskService {
 
     Task createTask(Task task);
 
-    Task updateTaskByFields(Long taskId, Map<String, Object> fields);
+    Task updateTaskByTaskIdAndFields(Long taskId, Map<String, Object> fields);
 }
