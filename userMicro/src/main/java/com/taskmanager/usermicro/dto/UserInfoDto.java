@@ -1,9 +1,14 @@
 package com.taskmanager.usermicro.dto;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
-public class UserInfoDto {
-    private final Long userId;
-    private final String email;
+import java.io.Serializable;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class UserInfoDto implements Serializable {
+    private Long userId;
+    private String email;
 }

@@ -1,11 +1,11 @@
 CREATE TABLE public.usr
 (
     user_id bigserial NOT NULL,
-    email character varying(40) NOT NULL,
+    emailDto character varying(40) NOT NULL,
     name character varying(100) NOT NULL,
     password character varying(100) NOT NULL,
     PRIMARY KEY (user_id),
-    CONSTRAINT uk_constraint_username UNIQUE (email)
+    CONSTRAINT uk_constraint_username UNIQUE (emailDto)
 );
 
 CREATE TABLE public.user_tasks

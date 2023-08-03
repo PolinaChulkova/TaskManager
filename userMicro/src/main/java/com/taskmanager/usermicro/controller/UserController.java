@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,11 +31,11 @@ public class UserController {
     }
 
     @GetMapping("/user-info")
-    public ResponseEntity<Set<UserInfoDto>> getAllUserInfo() {
+    public ResponseEntity<List<UserInfoDto>> getAllUserInfo() {
         return ResponseEntity.ok(
                 userService.getAllUsers().stream()
                         .map(u -> new UserInfoDto(u.getUserId(), u.getEmail()))
-                        .collect(Collectors.toSet())
+                        .collect(Collectors.toList())
         );
     }
 }
