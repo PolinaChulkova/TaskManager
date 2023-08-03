@@ -1,6 +1,6 @@
 package com.taskmanager.taskmicro.mq;
 
-import com.taskmanager.taskmicro.dto.Email;
+import com.taskmanager.taskmicro.dto.EmailDto;
 import lombok.Getter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +15,11 @@ import java.util.function.Supplier;
 @Getter
 public class MessageFunc {
 
-    private final Sinks.Many<Message<Email>> innerBus = Sinks.many().multicast()
+    private final Sinks.Many<Message<EmailDto>> innerBus = Sinks.many().multicast()
             .onBackpressureBuffer(Queues.SMALL_BUFFER_SIZE, false);
 
     @Bean
-    public Supplier<Flux<Message<Email>>> newEmailProduce() {
+    public Supplier<Flux<Message<EmailDto>>> newEmailProduce() {
         return innerBus::asFlux;
     }
 }
