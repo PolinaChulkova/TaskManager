@@ -1,2 +1,2 @@
 CREATE UNIQUE INDEX index_username
-    ON public.usr USING btree (emailDto ASC);
+    ON public.usr USING btree (email ASC);

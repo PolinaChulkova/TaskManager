@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,23 +25,24 @@ public class TaskSchedulerServiceImpl implements TaskScheduleService {
     private final UserClient userClient;
 
     @Override
-    @Scheduled(cron = "@midnight")
-//    @Scheduled(fixedRate = 60000)
+//    @Scheduled(cron = "@midnight")
+    @Scheduled(fixedRate = 10000)
     public void sendEmail() {
-            userClient.getAllUsersInfo().stream().map(this::createEmailForUser)
-                    .forEach(messageFuncAction::sendEmail);
+        userClient.getAllUsersInfo().stream().map(this::createEmailForUser)
+                .forEach(messageFuncAction::sendEmail);
 
     }
 
     private EmailDto createEmailForUser(UserInfoDto userInfoDto) {
-        Set<Task> tasks = taskRepository.getAllByUserIdAndCompletionDate(userInfoDto.getUserId(), Calendar.getInstance());
+        Set<Task> tasks = taskRepository.getAllByUserIdAndCurrentDate(userInfoDto.getUserId());
 
         Set<String> completed = tasks.stream().filter(Task::getStatus)
                 .map(Task::getTitle).collect(Collectors.toSet());
+        log.info("Выполненные задания: " + completed.toString());
         Set<String> uncompleted = tasks.stream().limit(5).filter(t -> !t.getStatus())
                 .map(Task::getTitle).collect(Collectors.toSet());
+        log.info("Не выполненные задания: " + uncompleted);
 
-        log.info("Create EmailDto for user with email: " + userInfoDto.getEmail());
         return new EmailDto(
                 userInfoDto.getEmail(),
                 String.format(

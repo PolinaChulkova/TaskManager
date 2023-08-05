@@ -24,12 +24,6 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserByUserId(userId));
     }
 
-    @PatchMapping("/{userId}")
-    public ResponseEntity<User> updateUserByFields(@PathVariable("userId") Long userId,
-                                                   @RequestBody Map<String, Object> fields) {
-        return ResponseEntity.ok(userService.updateUserByUserIdAndFields(userId, fields));
-    }
-
     @GetMapping("/user-info")
     public ResponseEntity<List<UserInfoDto>> getAllUserInfo() {
         return ResponseEntity.ok(
@@ -38,4 +32,16 @@ public class UserController {
                         .collect(Collectors.toList())
         );
     }
+
+    @PatchMapping("/{userId}")
+    public ResponseEntity<User> updateUserByFields(@PathVariable("userId") Long userId,
+                                                   @RequestBody Map<String, Object> fields) {
+        return ResponseEntity.ok(userService.updateUserByUserIdAndFields(userId, fields));
+    }
+
+    @DeleteMapping("/{userId}")
+    public void deleteUserById(@PathVariable("userId") Long userId) {
+        userService.deleteUserByUserId(userId);
+    }
+
 }
