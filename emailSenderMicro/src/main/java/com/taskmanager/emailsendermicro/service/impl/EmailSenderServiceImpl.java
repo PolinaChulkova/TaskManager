@@ -5,6 +5,7 @@ import com.taskmanager.emailsendermicro.service.EmailSenderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -20,12 +21,17 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
     @Override
     public void sendEmail(EmailDto emailDto) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom(from);
-        mailMessage.setTo(emailDto.getTo());
-        mailMessage.setSubject(emailDto.getSubject());
-        mailMessage.setText(emailDto.getText());
-        emailSender.send(mailMessage);
-        log.info("EmailDto отправлен на почту " + emailDto.getTo());
+        try {
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setFrom(from);
+            mailMessage.setTo(emailDto.getTo());
+            mailMessage.setSubject(emailDto.getSubject());
+            mailMessage.setText(emailDto.getText());
+            emailSender.send(mailMessage);
+            log.info("EmailDto отправлен на почту " + emailDto.getTo());
+        } catch (MailException e) {
+            log.error(e.getMessage());
+            throw new RuntimeException("Не удалось отправить сообщение на email: " + emailDto.getTo());
+        }
     }
 }
