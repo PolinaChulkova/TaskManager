@@ -1,9 +1,8 @@
 package com.taskmanager.taskmicro.service.impl;
 
+import com.taskmanager.taskmicro.entity.Task;
 import com.taskmanager.taskmicro.repository.TaskRepository;
 import com.taskmanager.taskmicro.service.TaskService;
-import com.taskmanager.taskmicro.entity.Task;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +11,6 @@ import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.util.Map;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +21,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task getTaskByTaskId(Long taskId) {
         return taskRepository.findById(taskId)
-                .orElseThrow(() -> new EntityNotFoundException("Задача с taskId = " + taskId + " не найдена!"));
+                .orElseThrow(() -> new IllegalArgumentException("Задача с taskId = " + taskId + " не найдена!"));
     }
 
     @Override
@@ -33,7 +31,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteTaskByTaskId(Long taskId) {
-        taskRepository.deleteById(taskId);
+        try {
+            taskRepository.deleteById(taskId);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Задача с taskId = " + taskId + " не найдена!");
+        }
     }
 
     @Override
@@ -52,8 +54,8 @@ public class TaskServiceImpl implements TaskService {
             Field field = ReflectionUtils.findField(Task.class, key);
             field.setAccessible(true);
             ReflectionUtils.setField(field, task, value);
-            });
+        });
 
-            return taskRepository.save(task);
-        }
+        return taskRepository.save(task);
+    }
 }
