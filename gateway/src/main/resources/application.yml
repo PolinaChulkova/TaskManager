@@ -1,0 +1,68 @@
+server:
+  port: 8765
+
+eureka:
+  client:
+    service-url:
+      defaultZone=http://localhost:8761/eureka:
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: user-micro
+          uri: http://localhost:8097
+          predicates:
+           - Path=/user-micro/**
+          filters:
+           - RemoveRequestHeader=Cookie
+        - id: task-micro
+          uri: http://localhost:8096
+          predicates:
+           - Path=/task-micro/**
+          filters:
+           - RemoveRequestHeader=Cookie
+
+  security:
+    oauth2:
+      client:
+        registration:
+          gateway:
+            provider: my-provider
+            client-id: my_client
+            client-secret: OUFvGmnmUV22G7r74kzmgByTRMk0Cnl7
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8765/login/oauth2/code/{registrationId}"
+        provider:
+          my-provider:
+            issuer-uri: http://localhost:8888/auth/realms/my_realm
+
+#  security:
+#    oauth2:
+#      client:
+#        provider:
+#          keycloak:
+#            token-uri: http://localhost:8888/auth/realms/master/protocol/openid-connect/token
+#            authorization-uri: http://localhost:8888/auth/realms/master/protocol/openid-connect/auth
+#            user-info-uri: http://localhost:8888/realms/master/protocol/openid-connect/userinfo
+#            user-name-attribute: preferred_username
+#        registration:
+#          keycloak-with-test-scope:
+#            provider: keycloak
+#            client-id: spring-with-test-scope
+#            client-secret: c6480137-1526-4c3e-aed3-295aabcb7609
+#            authorization-grant-type: authorization_code
+#            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+#          keycloak-without-test-scope:
+#            provider: keycloak
+#            client-id: spring-gateway
+#            client-secret: OUFvGmnmUV22G7r74kzmgByTRMk0Cnl7
+#            authorization-grant-type: authorization_code
+#            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
