@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
+@Transactional
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     Page<Task> getAllByUserId(Long userId, Pageable pageable);
 
-    @Transactional
     @Query(value = "select * from task where cast(planned_due_date as date) = current_date " +
             "and user_id = :userId",
             nativeQuery = true)

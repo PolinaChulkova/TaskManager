@@ -19,18 +19,18 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
 
     @Override
-    public Task getTaskByTaskId(Long taskId) {
+    public Task getTaskByTaskId(long taskId) {
         return taskRepository.findById(taskId)
                 .orElseThrow(() -> new IllegalArgumentException("Задача с taskId = " + taskId + " не найдена!"));
     }
 
     @Override
-    public Page<Task> getTasksByUserId(Long userId, Pageable pageable) {
+    public Page<Task> getTasksByUserId(long userId, Pageable pageable) {
         return taskRepository.getAllByUserId(userId, pageable);
     }
 
     @Override
-    public void deleteTaskByTaskId(Long taskId) {
+    public void deleteTaskByTaskId(long taskId) {
         try {
             taskRepository.deleteById(taskId);
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task updateTaskByTaskIdAndFields(Long taskId, Map<String, Object> fields) {
+    public Task updateTaskByTaskIdAndFields(long taskId, Map<String, Object> fields) {
         Task task = getTaskByTaskId(taskId);
 
         fields.remove("taskId");

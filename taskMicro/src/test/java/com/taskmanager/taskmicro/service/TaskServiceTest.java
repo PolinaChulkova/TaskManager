@@ -11,7 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,12 +36,12 @@ public class TaskServiceTest {
         Task task1 = new Task(
                 1L, "Task1", "Description",
                 true,
-                new GregorianCalendar(2023, 9, 15, 20, 0),
+                LocalDate.of(2023, 9, 15),
                 1L);
         Task task2 = new Task(
                 1L, "Task2", "Description",
                 true,
-                new GregorianCalendar(2023, 9, 15, 21, 0),
+                LocalDate.of(2023, 9, 15),
                 1L);
 
         given(taskRepository.getAllByUserId(1L, PageRequest.of(0, 2)))
@@ -57,7 +57,7 @@ public class TaskServiceTest {
         Task task1 = new Task(
                 1L, "Task1", "Description",
                 true,
-                new GregorianCalendar(2023, 9, 15, 20, 0),
+                LocalDate.of(2023, 9, 15),
                 1L);
 
         when(taskRepository.findById(task1.getTaskId())).thenReturn(Optional.of(task1));
@@ -77,7 +77,7 @@ public class TaskServiceTest {
         Task task1 = new Task(
                 1L, "Task1", "Description",
                 true,
-                new GregorianCalendar(2023, 9, 15, 20, 0),
+                LocalDate.of(2023, 9, 15),
                 1L);
 
         taskService.createTask(task1);

@@ -1,7 +1,7 @@
 package com.taskmanager.taskmicro.controller;
 
 import com.taskmanager.taskmicro.dto.StatisticsDto;
-import com.taskmanager.taskmicro.service.impl.StatisticsService;
+import com.taskmanager.taskmicro.service.StatisticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

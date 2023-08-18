@@ -1,14 +1,10 @@
 package com.taskmanager.taskmicro.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@AllArgsConstructor
-@Getter
-@Setter
+@Data
 public class StatisticsDto {
     private LocalDate periodBeginDate;
     private LocalDate periodEndDate;
