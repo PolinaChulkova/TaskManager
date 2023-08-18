@@ -10,7 +10,7 @@ public class TaskMapper {
                 dto.getTitle(),
                 dto.getDescription(),
                 dto.getStatus(),
-                dto.getCompletionDate(),
+                dto.getPlannedDueDate(),
                 dto.getUserId()
         );
     }
@@ -20,7 +20,7 @@ public class TaskMapper {
                 task.getTitle(),
                 task.getDescription(),
                 task.getStatus(),
-                task.getCompletionDate(),
+                task.getPlannedDueDate(),
                 task.getUserId()
         );
     }

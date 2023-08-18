@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.task-manager.emailSenderMicro.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.task-manager.emailSenderMicro.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.task-manager.taskMicro.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.task-manager.taskMicro.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.task-manager.userMicro.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.task-manager.userMicro.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/emailSenderMicro.main.iml" filepath="$PROJECT_DIR$/.idea/modules/emailSenderMicro.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eureka-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/eureka-server.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/taskMicro.main.iml" filepath="$PROJECT_DIR$/.idea/modules/taskMicro.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/userMicro.iml" filepath="$PROJECT_DIR$/.idea/modules/userMicro.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/userMicro.main.iml" filepath="$PROJECT_DIR$/.idea/modules/userMicro.main.iml" />
     </modules>
   </component>

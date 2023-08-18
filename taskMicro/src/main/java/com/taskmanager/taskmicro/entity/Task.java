@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 @Entity
@@ -22,26 +23,28 @@ public class Task {
     @Column(name = "status")
     private Boolean status;
     @Column(name = "completion_date")
-    private Calendar completionDate;
+    private LocalDate completionDate;
+    @Column(name = "planned_due_date")
+    private LocalDate plannedDueDate;
     @Column(name = "user_id")
     private Long userId;
 
     public Task(Long taskId, String title, String description,
-                Boolean status, Calendar completionDate, Long userId) {
+                Boolean status, LocalDate plannedDueDate, Long userId) {
         this.taskId = taskId;
         this.title = title;
         this.description = description;
         this.status = status;
-        this.completionDate = completionDate;
+        this.plannedDueDate = plannedDueDate;
         this.userId = userId;
     }
 
     public Task(String title, String description,
-                Boolean status, Calendar completionDate, Long userId) {
+                Boolean status, LocalDate plannedDueDate, Long userId) {
         this.title = title;
         this.description = description;
         this.status = status;
-        this.completionDate = completionDate;
+        this.plannedDueDate = plannedDueDate;
         this.userId = userId;
     }
 }
